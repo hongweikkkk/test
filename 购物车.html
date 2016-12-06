@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+        .daohang{
+        	width: 100%;
+        	height: 90px;
+        	background: red;
+        }
+        .box_1{
+        	width: 1000px;
+        	height: 90px;
+        	margin: 0 auto;
+        }
+        .box_1 li{
+        	float: left;
+        	line-height: 90px;
+        	color: white;
+        	font-size: 20px;
+        }
+        .box_1 li:nth-child(2){
+            margin-left: 500px;
+        }
+        .box_1 li:nth-child(3){
+            margin-left: 360px;
+        }
+        .box_2{
+        	width: 1000px;
+        	height: 40px;
+        	border: 1px solid white;
+            margin:auto;
+            line-height: 40px;
+            border-bottom: 1px solid red;
+        }
+        .box_2 input{
+           width: 20px;
+           height: 20px;
+           float: left;
+           margin-top: 13px;
+        }
+        .box_3{
+        	width: 1000px;
+        	height: 100px;
+        	margin: auto;
+        	border-bottom: 1px solid red;
+            border-left: 1px solid red;
+            border-right: 1px solid red;
+        }
+        .box_3 img{
+            width: 60px;
+            height: 60px;
+            margin-top: 20px;
+            float: left;
+        }
+        .box_3 input{
+        	width: 15px;
+        	height: 15px;
+        	float: left;
+        	margin-top: 45px;
+        }
+        .box_3 li{
+        	float: left;
+        }
+        .you{
+        	width: 400px;
+            height: 100px;
+            margin-left: 500px;
+        }
+        .you div:nth-child(1),.you div:nth-child(2),.you div:nth-child(3){
+        	margin-top: 10px;
+        }
+        .qian span:nth-child(1){
+            color: red;
+        }
+        .qian span:nth-child(2){
+        	margin-left: 200px;
+        }
+        .qian span:nth-child(2),.qian span:nth-child(4){
+            cursor: pointer;
+        	display: inline-block;
+            width: 15px;
+            height: 15px;
+            text-align: center;
+            line-height: 15px;
+            background: orange;
+        }
+        .dibu{
+            width: 1000px;
+            height: 40px;
+            margin:auto;
+            border-bottom: 1px solid red;
+            border-left: 1px solid red;
+            border-right: 1px solid red;
+        }
+        .dibu li{
+            float: left;
+            width: 500px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .dibu li:nth-child(1){
+            background: yellow;
+            font-size: 20px;
+        }
+        .dibu li:nth-child(2){
+            background: red;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+	</style>
+</head>
+<body  onselectstart="return false;">
+	<div class="daohang">
+		<div class="box_1">
+			<li><</li>
+			<li>购物车</li>
+			<li>完成</li>
+		</div>
+	</div>
+	<div class="box_2">
+		<input type="checkbox" name="" id="zong">&nbsp;&nbsp;全选
+	</div>
+	<div id="haha">
+		<div id="demo" class="box_3">
+			<li>
+			<input type="checkbox" name="">
+            <img src="images/cpmc_smallImg.jpg">
+			</li>
+			<li class="you">
+				<div>产品名称</div>
+				<div>描述描述描述描述描述描述描述描述描述描述描述描述描述描述
+				描述描述描述描述
+				</div>	
+				<div class="qian">
+					<span></span>
+					<span>-</span>
+					<span>0</span>
+					<span>+</span>库存
+					<span>100</span>件
+				</div>
+			</li>
+		</div>
+	</div>
+    <div class="dibu">
+        <li>总计：<span id="price">￥0</span></li>
+        <li id="qu">去结算</li>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+	var haha = document.getElementById("haha");
+	var demo = document.getElementById("demo");
+    var price = document.getElementById("price");
+    var qu = document.getElementById("qu");
+	var zong = document.getElementById("zong");
+	var fen = document.getElementById("fen");
+	var arry1 = ["25.60","34.40","40.00","89.00","28.00","80.00","70.00","60.00"];
+
+	for(var i = 0;i<6;i++){
+		haha.appendChild(demo.cloneNode(true));
+    }
+    for(var i = 0;i<haha.children.length;i++){
+        var lis = haha.children[i].children[1].children[2].children[0];
+        lis.innerHTML = arry1[i];
+    }
+    zong.onclick = function(){
+        for(var i = 0;i<7;i++){
+        haha.children[i].children[0].children[0].checked = this.checked;
+    }
+    }
+    
+    for(var i = 0;i<7;i++){  
+        var xuan = haha.children[i].children[0].children[0];
+        xuan.onclick = function(){
+            var a = true;
+            for(var i = 0;i<7;i++){
+                    xuan = haha.children[i].children[0].children[0];
+                    if(!xuan.checked)  {
+                        a = false;
+                        break;
+                    }                   
+                    }
+                    zong.checked = a;
+                }
+            }
+    var jian = [];
+    var zhi = [];
+    var jia = [];
+    var kuchun = [];
+    // var lis = [];
+    for(var i = 0;i<7;i++){
+        jian[i] = haha.children[i].children[1].children[2].children[1];
+        zhi[i] = haha.children[i].children[1].children[2].children[2];
+        jia[i] = haha.children[i].children[1].children[2].children[3];
+        kuchun[i] = haha.children[i].children[1].children[2].children[4];
+        lis = haha.children[i].children[1].children[2].children[0];
+    }
+    for(var i = 0;i<7;i++){
+        jian[i].index = i;
+        jia[i].index = i;
+        jian[i].onclick = function(){
+            if(zhi[this.index].innerHTML>0){
+            zhi[this.index].innerHTML--;
+            kuchun[this.index].innerHTML++;
+        }
+        }
+        jia[i].onclick = function(){
+            if(zhi[this.index].innerHTML<100){
+            zhi[this.index].innerHTML++;
+            kuchun[this.index].innerHTML--;
+        }
+        }
+    }
+    var qian = [];
+    var a = 0;
+    qu.onclick = function(){
+    for(var i = 0;i<haha.children.length;i++){
+      var lis = haha.children[i].children[1].children[2].children[0];
+       if(haha.children[i].children[0].children[0].checked){
+          a = a + parseFloat(zhi[i].innerHTML) * parseFloat(arry1[i]);
+          price.innerHTML = a.toFixed(2);
+
+       }     
+     }
+    a = 0;
+ }
+    </script>
